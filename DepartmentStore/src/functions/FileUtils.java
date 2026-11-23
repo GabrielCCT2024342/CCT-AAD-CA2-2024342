@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fileUtils;
+package functions;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,6 +13,7 @@ import java.io.IOException;
  * @author ROG STRIX
  */
 public class FileUtils {
+    
     public String[][] readFile(String filepath){
         String[][] people = new String[46][];
         String line;

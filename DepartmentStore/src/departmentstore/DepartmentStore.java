@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package departmentstore;
-import fileUtils.FileUtils;
-import sorter.MergeSortString;
+import functions.FileUtils;
+import functions.MergeSortString;
 
 /**
  *
