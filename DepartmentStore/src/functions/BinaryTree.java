@@ -99,34 +99,34 @@ public class BinaryTree {
      * @param arr Multidimensional array with other arrays to be used
      */
     public void autoFillTree(String[][] arr){
+        //initializes the queue
+        Queue queue = new Queue();
         //creates the root
         makeTree(arr[0]);
         //used to locate the father
-        int father;
+        int father = 1;
         //as long as the array given
         for(int i = 1; i < arr.length; i++){
+            //used to make pointers
             int j = i + 1;
-            //if array is bigger than tree capacity
-            if(j >= tree.length){
-                //let user know tree is full and stop loop
-                System.out.println("Tree is full");
-                break;
+            //if father has no left son
+            if(!tree[father].isLeft()){
+                //creates left son
+                setLeft(tree[father],arr[i],j);
+                //adds left sons pointer to the queue
+                queue.enqueue(j);
+            //if father has left son but no right son
+            }else if(!tree[father].isRight()){
+                //creates right son
+                setRight(tree[father], arr[i], j);
+                //adds right sons pointer to the queue
+                queue.enqueue(j);
+            //if father has both sons 
             }else{
-                //because of how the loop works all even pointers 
-                //will be left sons and all odds be right pointers
-                
-                //checks if even
-                if((j%2) == 0){
-                    //due to loop left sons father pointer is always one behind
-                    father = j - 1;
-                    //adds new left son to father
-                    setLeft(tree[father], arr[i], j);
-                }else{
-                    //due to loop right sons father pointer is always two behind
-                    father = j - 2;
-                    //adds new right son to father
-                    setRight(tree[father], arr[i], j);
-                }
+                //update father with the next pointer
+                father = queue.dequeue();
+                //lower i since nothing was added this loop
+                i--;
             }
         }
     }
