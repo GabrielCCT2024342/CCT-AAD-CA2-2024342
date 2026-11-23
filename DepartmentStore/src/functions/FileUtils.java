@@ -38,6 +38,8 @@ public class FileUtils {
                 }else if(counter < people.length){
                     //separates the line into an array based on comas
                     String[] values = line.split(delimiter);
+                    
+                    values = arrayCleaner(values);
                     //adds the array to the multidimensional array
                     people[counter] = values;
                     counter++;
@@ -72,5 +74,46 @@ public class FileUtils {
             }
         }
         
+    }
+    
+    public String[] arrayCleaner(String[] arr){
+        boolean empty = false;
+        String[] clean = new String[arr.length];
+        
+        for(int i = 0; i < arr.length; i++){
+            clean[i] = arr[i].trim();
+        }
+        
+        String[] full = new String[arr.length - 1];
+        while(true){
+            int emptyIndex = -1;
+            boolean empty2 = false;
+            for (int i = 0; i < arr.length; i++){
+                if(arr[i].equals("")){
+                    emptyIndex = i;
+                    empty = true;
+                    empty2 = true;
+                    break;
+                }
+            }
+            if(empty2){
+                for(int i = 0; i < full.length; i++){
+                    int j = i;
+                    if(j == emptyIndex){
+                        j++;
+                    }
+                    full[i] = arr[j].trim();
+                }
+                break;
+            }else{
+                break;
+            }
+        }
+        
+        if(empty){
+            return full;
+        }else{
+            return clean;
+        }
     }
 }

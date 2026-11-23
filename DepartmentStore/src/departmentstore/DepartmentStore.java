@@ -28,7 +28,7 @@ public class DepartmentStore {
         String[][] people = fileUtils.readFile("Applicants_Form - Sample data file for read.txt");
         if (people != null){
             sorter.arraySort(people);
-            //fileUtils.arrayTest(people);
+            fileUtils.arrayTest(people);
 
             String target = "Sophia";
             try{
@@ -37,17 +37,18 @@ public class DepartmentStore {
                 System.out.println("Target not found");
             }
             
-            //userUtils.display20(people);
-            //userUtils.displayAll(people);
-            //people = userUtils.addUser(people);
-            //userUtils.displayAll(people);
+            userUtils.display20(people);
+            userUtils.displayAll(people);
+            people = userUtils.addUser(people);
+            userUtils.displayAll(people);
             
             tree.makeTree(people[0]);
             
             tree.autoFillTree(people);
             
-            //tree.preorderStart();
+            tree.preorderStart();
             tree.inorderStart();
+            tree.postorderStart();
         }
     }
     

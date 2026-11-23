@@ -135,9 +135,9 @@ public class BinaryTree {
         System.out.println(node.Info());
         if(node.isLeft()){
             preorder(tree[node.Left()]);
-            if(node.isRight()){
-                preorder(tree[node.Right()]);
-            }
+        }
+        if(node.isRight()){
+            preorder(tree[node.Right()]);
         }
     }
     
@@ -148,15 +148,28 @@ public class BinaryTree {
     public void inorder(Node node){
         if(node.isLeft()){
             inorder(tree[node.Left()]);
-        }else{
-            System.out.println(node.Info());
-            if(node.isRight()){
-                inorder(tree[node.Right()]);
-            }
+        }
+        System.out.println(node.Info());
+        if(node.isRight()){
+            inorder(tree[node.Right()]);
         }
     }
     
     public void inorderStart(){
         inorder(tree[1]);
+    }
+    
+    public void postorder(Node node){
+        if(node.isLeft()){
+            postorder(tree[node.Left()]);
+        }
+        if(node.isRight()){
+            postorder(tree[node.Right()]);
+        }
+        System.out.println(node.Info());
+    }
+    
+    public void postorderStart(){
+        postorder(tree[1]);
     }
 }
