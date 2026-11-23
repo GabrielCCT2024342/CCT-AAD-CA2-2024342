@@ -76,44 +76,60 @@ public class FileUtils {
         
     }
     
+    /**
+     * Cleans empty spaces in arrays if present and trims
+     * @param arr Array to be cleaned
+     * @return Cleaned array
+     */
     public String[] arrayCleaner(String[] arr){
+        //used to track if it was emptied or not
         boolean empty = false;
+        //creates new array to store the cleaning
         String[] clean = new String[arr.length];
         
+        //copies everything from the original array trimmed
         for(int i = 0; i < arr.length; i++){
             clean[i] = arr[i].trim();
         }
         
+        //initialises the array that would store the new array with no empty
         String[] full = new String[arr.length - 1];
-        while(true){
-            int emptyIndex = -1;
-            boolean empty2 = false;
-            for (int i = 0; i < arr.length; i++){
-                if(arr[i].equals("")){
-                    emptyIndex = i;
-                    empty = true;
-                    empty2 = true;
-                    break;
-                }
-            }
-            if(empty2){
-                for(int i = 0; i < full.length; i++){
-                    int j = i;
-                    if(j == emptyIndex){
-                        j++;
-                    }
-                    full[i] = arr[j].trim();
-                }
-                break;
-            }else{
+        
+        //stores where the empty space is
+        int emptyIndex = -1;
+        
+        //goes through the array
+        for (int i = 0; i < arr.length; i++){
+            //if it finds an empty space
+            if(arr[i].equals("")){
+                //records the index
+                emptyIndex = i;
+                //and triggers the empty flag
+                empty = true;
+                //stops the loop early
                 break;
             }
         }
         
+        //if the flag was tripped
         if(empty){
+            //used as the index for the original array
+            int j = 0;
+            //goes through the new full array
+            for(int i = 0; i < full.length; i++){
+                //skips the empty space in the original
+                if(j == emptyIndex){
+                    j++;
+                }
+                //copies from the original to the new array trimmed
+                full[i] = arr[j].trim();
+
+                j++;
+            }
             return full;
-        }else{
-            return clean;
         }
+        
+        return clean;
+        
     }
 }

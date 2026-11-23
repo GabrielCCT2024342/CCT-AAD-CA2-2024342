@@ -131,6 +131,10 @@ public class BinaryTree {
         }
     }
     
+    /**
+     * Traverses the tree root -> left -> right
+     * @param node Node to get left, right and info
+     */
     public void preorder(Node node){
         System.out.println(node.Info());
         if(node.isLeft()){
@@ -141,10 +145,17 @@ public class BinaryTree {
         }
     }
     
+    /**
+     * Used to start travel from menu
+     */
     public void preorderStart(){
         preorder(tree[1]);
     }
     
+    /**
+     * Traverses the tree left -> root -> right
+     * @param node Node to get left, right and info
+     */
     public void inorder(Node node){
         if(node.isLeft()){
             inorder(tree[node.Left()]);
@@ -155,10 +166,17 @@ public class BinaryTree {
         }
     }
     
+    /**
+     * Used to start travel from menu
+     */
     public void inorderStart(){
         inorder(tree[1]);
     }
     
+    /**
+     * Traverses the tree left -> right -> root
+     * @param node Node to get left, right and info
+     */
     public void postorder(Node node){
         if(node.isLeft()){
             postorder(tree[node.Left()]);
@@ -169,6 +187,9 @@ public class BinaryTree {
         System.out.println(node.Info());
     }
     
+    /**
+     * Used to start travel from menu
+     */
     public void postorderStart(){
         postorder(tree[1]);
     }
