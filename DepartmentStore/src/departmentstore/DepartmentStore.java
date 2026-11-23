@@ -35,6 +35,9 @@ public class DepartmentStore {
                 System.out.println("Target not found");
             }
             
+            userUtils.display20(people);
+            userUtils.displayAll(people);
+            people = userUtils.addUser(people);
             userUtils.displayAll(people);
         }
     }
