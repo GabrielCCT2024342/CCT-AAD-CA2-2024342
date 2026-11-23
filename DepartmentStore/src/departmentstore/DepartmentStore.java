@@ -7,6 +7,7 @@ import functions.FileUtils;
 import functions.MergeSortString;
 import functions.BinarySearchString;
 import functions.UserUtils;
+import functions.BinaryTree;
 
 /**
  *
@@ -22,6 +23,7 @@ public class DepartmentStore {
         MergeSortString sorter = new MergeSortString();
         BinarySearchString searcher = new BinarySearchString();
         UserUtils userUtils = new UserUtils();
+        BinaryTree tree = new BinaryTree();
         
         String[][] people = fileUtils.readFile("Applicants_Form - Sample data file for read.txt");
         if (people != null){
@@ -39,6 +41,10 @@ public class DepartmentStore {
             userUtils.displayAll(people);
             people = userUtils.addUser(people);
             userUtils.displayAll(people);
+            
+            tree.makeTree(people[0]);
+            
+            tree.autoFillTree(people);
         }
     }
     
