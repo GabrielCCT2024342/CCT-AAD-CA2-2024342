@@ -6,6 +6,7 @@ package departmentstore;
 import functions.FileUtils;
 import functions.MergeSortString;
 import functions.BinarySearchString;
+import functions.UserUtils;
 
 /**
  *
@@ -20,14 +21,21 @@ public class DepartmentStore {
         FileUtils fileUtils = new FileUtils();
         MergeSortString sorter = new MergeSortString();
         BinarySearchString searcher = new BinarySearchString();
+        UserUtils userUtils = new UserUtils();
         
         String[][] people = fileUtils.readFile("Applicants_Form - Sample data file for read.txt");
         if (people != null){
-            String[][] peopleSorted = sorter.arraySort(people);
-            fileUtils.arrayTest(peopleSorted);
+            sorter.arraySort(people);
+            fileUtils.arrayTest(people);
 
-            String target = "Alex";
-            System.out.println(target + "'s gender is " + peopleSorted[searcher.BinarySearch(peopleSorted, peopleSorted.length, target)][2]);
+            String target = "Sophia";
+            try{
+                System.out.println(target + "'s gender is " + people[searcher.BinarySearch(people, people.length, target)][2]);
+            }catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Target not found");
+            }
+            
+            userUtils.displayAll(people);
         }
     }
     
