@@ -104,9 +104,10 @@ public class BinaryTree {
         //used to locate the father
         int father;
         //as long as the array given
-        for(int i = 2; i < arr.length; i++){
+        for(int i = 1; i < arr.length; i++){
+            int j = i + 1;
             //if array is bigger than tree capacity
-            if(i >= tree.length){
+            if(j >= tree.length){
                 //let user know tree is full and stop loop
                 System.out.println("Tree is full");
                 break;
@@ -115,18 +116,47 @@ public class BinaryTree {
                 //will be left sons and all odds be right pointers
                 
                 //checks if even
-                if((i%2) == 0){
+                if((j%2) == 0){
                     //due to loop left sons father pointer is always one behind
-                    father = i - 1;
+                    father = j - 1;
                     //adds new left son to father
-                    setLeft(tree[father], arr[i], i);
+                    setLeft(tree[father], arr[i], j);
                 }else{
                     //due to loop right sons father pointer is always two behind
-                    father = i - 2;
+                    father = j - 2;
                     //adds new right son to father
-                    setRight(tree[father], arr[i], i);
+                    setRight(tree[father], arr[i], j);
                 }
             }
         }
+    }
+    
+    public void preorder(Node node){
+        System.out.println(node.Info());
+        if(node.isLeft()){
+            preorder(tree[node.Left()]);
+            if(node.isRight()){
+                preorder(tree[node.Right()]);
+            }
+        }
+    }
+    
+    public void preorderStart(){
+        preorder(tree[1]);
+    }
+    
+    public void inorder(Node node){
+        if(node.isLeft()){
+            inorder(tree[node.Left()]);
+        }else{
+            System.out.println(node.Info());
+            if(node.isRight()){
+                inorder(tree[node.Right()]);
+            }
+        }
+    }
+    
+    public void inorderStart(){
+        inorder(tree[1]);
     }
 }
