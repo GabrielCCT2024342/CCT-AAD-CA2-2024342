@@ -34,7 +34,7 @@ public class BinarySearchString {
                 //return the index of the middle point
                 return mid;
             //if target if after the middle point
-            }else if(target.compareTo(arr[mid][0]) > 0){
+            }else if(target.toLowerCase().compareTo(arr[mid][0].toLowerCase()) > 0){
                 //new low is index right after the middle point
                 low = mid + 1;
             }else {
