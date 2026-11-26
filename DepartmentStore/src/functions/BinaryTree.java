@@ -193,4 +193,8 @@ public class BinaryTree {
     public void postorderStart(){
         postorder(tree[1]);
     }
+    
+    public Node[] getTree(){
+        return tree;
+    }
 }
