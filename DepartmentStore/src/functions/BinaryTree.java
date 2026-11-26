@@ -197,4 +197,43 @@ public class BinaryTree {
     public Node[] getTree(){
         return tree;
     }
+    
+    /**
+     * Counts all non null items in the tree array
+     * @return Amount of nodes in the tree
+     */
+    public int getNodeAmount(){
+        int counter = 0;
+        //goest through the tree and counts all non null items
+        for(int i = 0; i < tree.length; i++){
+            if(tree[i] != null){
+                counter++;
+            }
+        }
+        return counter;
+    }
+    
+    /**
+     * Uses the amount of items in the tree to calculate the height
+     * @return height
+     */
+    public int getHeight(){
+        int counter = 0;
+        for(int i = 0; i < tree.length; i++){
+            if(tree[i] != null){
+                counter++;
+            }
+        }
+        //keeps track of the exponent
+        int expCounter = 0;
+        //number being multiplied by 2
+        //starts at 1 because of 2^1 - 1
+        int number = 1;
+        while(number <= counter){
+            number = number * 2;
+            expCounter++;
+        }
+        
+        return expCounter;
+    }
 }
