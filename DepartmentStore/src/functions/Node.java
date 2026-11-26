@@ -54,7 +54,6 @@ public class Node {
         this.position = position;
         this.department = department;
         this.pointer = pointer;
-        this.left = left;
         this.father = father;
         this.brother = brother;
     }
