@@ -17,13 +17,15 @@ public class Menu {
     private BinaryTree tree;
     private Scanner myKB;
     private String[][] people;
+    private InputUtils inputUtils;
     
     enum options{
         SORT,
         SEARCH,
         ADD,
         TREE,
-        EXIT
+        EXIT,
+        SKIP
     }
     
     enum treeOptions{
@@ -43,6 +45,7 @@ public class Menu {
         this.userUtils = new UserUtils();
         this.tree = new BinaryTree();
         this.myKB = new Scanner(System.in);
+        this.inputUtils = new InputUtils();
         this.people = fileUtils.readFile("Applicants_Form - Sample data file for read.txt");
     }
 
@@ -53,6 +56,7 @@ public class Menu {
         this.userUtils = new UserUtils();
         this.tree = new BinaryTree();
         this.myKB = new Scanner(System.in);
+        this.inputUtils = new InputUtils();
         this.people = fileUtils.readFile(filepath);
     }
     
@@ -60,6 +64,7 @@ public class Menu {
         
         if(people != null){
             String input;
+            options option;
             do{
                 System.out.println("Welcome to the app menu");
                 System.out.println("The file has been parsed already");
@@ -75,14 +80,48 @@ public class Menu {
                 System.out.println("5. Exit");
                 System.out.println("    Ends the program");
                 
+                System.out.println("\nPlease choose an option");
                 input = myKB.nextLine();
                 
-                options option = options.valueOf(input);
+                option = options.SKIP;
+                
+                for(int i = 0; i < options.values().length; i++){//options.values()[i].toString().contains(input.trim().toUpperCase())
+                    if(input.trim().toUpperCase().contains(options.values()[i].toString()) || input.trim().equals(String.valueOf(i + 1))){
+                        option = options.values()[i];
+                        break;
+                    }else if(i == options.values().length - 1){
+                        System.out.println("Please select a valid option");
+                    }
+                }
                 
                 switch(option){
-                    
+                    case SORT:
+                        sorter.arraySort(people);
+                        userUtils.display20(people);
+                        break;
+                    case SEARCH:
+                        input = inputUtils.askUserForText("Please enter a name to search for");
+                        int index = searcher.BinarySearch(people, people.length, input);
+                        
+                        if(index == -1){
+                            System.out.println("Not found on the list");
+                        }else{
+                            System.out.println("Name: " + people[index][0] + " " + people[index][1]);
+                            System.out.println("Position: " + people[index][6]);
+                            System.out.println("Department: " + people[index][5]);
+                        }
+                        break;
+                    case ADD:
+                        people = userUtils.addUser(people);
+                        break;
+                    case TREE:
+                        break;
+                    case EXIT:
+                        System.out.println("Exiting program");
+                        break;
+                        
                 }
-            }while(true);
+            }while(option != options.EXIT);
         }else{
             System.out.println("Unable to open file, please check filepath and restart the program");
         }
